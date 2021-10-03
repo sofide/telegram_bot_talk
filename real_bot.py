@@ -4,7 +4,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 from google_sheet import add_feedback
 from local_settings import BOT_TOKEN
-from quotes import QUOTES
+from quotes import ALL_QUOTES
 
 
 def start(update, context):
@@ -19,10 +19,10 @@ start_handler = CommandHandler('start', start)
 def send_quotes(update, context):
     user_message = update.message.text
     matching_quotes = [
-        quote for quote in QUOTES if user_message in quote
+        quote for quote in ALL_QUOTES if user_message in quote
     ]
     if not matching_quotes:
-        matching_quotes = QUOTES
+        matching_quotes = ALL_QUOTES
 
     selected_quote = random.choice(matching_quotes)
 
