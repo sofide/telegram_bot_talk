@@ -2,6 +2,7 @@ import random
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
+from google_sheet import add_feedback
 from local_settings import BOT_TOKEN
 from quotes import QUOTES
 
@@ -30,9 +31,20 @@ def send_quotes(update, context):
         text=selected_quote
     )
 
-
 quotes_handler = MessageHandler(Filters.text & (~Filters.command), send_quotes)
 
+
+def feedback(update, context):
+    feedback_text = ' '.join(context.args)
+
+    add_feedback(feedback_text)
+
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="gracias por tu feedback!"
+    )
+
+feedback_handler = CommandHandler('feedback', feedback)
 
 if __name__ == "__main__":
     updater = Updater(token=BOT_TOKEN)
@@ -41,5 +53,6 @@ if __name__ == "__main__":
 
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(quotes_handler)
+    dispatcher.add_handler(feedback_handler)
 
     updater.start_polling()
