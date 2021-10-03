@@ -81,15 +81,29 @@ star_wars_handler = CommandHandler('sw', quotes_of(STAR_WARS_QUOTES))
 
 def feedback(update, context):
     feedback_text = ' '.join(context.args)
+    username = getattr(update.message.from_user, "username", "")
+    full_name = getattr(update.message.from_user, "full_name", "")
 
-    add_feedback(feedback_text)
+    add_feedback(feedback_text, username, full_name)
 
     context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text="gracias por tu feedback!"
+        text="Gracias por tu feedback!"
     )
 
 feedback_handler = CommandHandler('feedback', feedback)
+
+def anonymous_feedback(update, context):
+    feedback_text = ' '.join(context.args)
+
+    add_feedback(feedback_text, "-", "-")
+
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Gracias por tu feedback anónimo!"
+    )
+
+anonymous_feedback_handler = CommandHandler('a_feedback', anonymous_feedback)
 
 if __name__ == "__main__":
     updater = Updater(token=BOT_TOKEN)
@@ -102,5 +116,6 @@ if __name__ == "__main__":
     dispatcher.add_handler(lord_of_the_rings_handler)
     dispatcher.add_handler(star_wars_handler)
     dispatcher.add_handler(feedback_handler)
+    dispatcher.add_handler(anonymous_feedback_handler)
 
     updater.start_polling()
