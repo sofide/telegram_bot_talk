@@ -4,13 +4,18 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 from google_sheet import add_feedback
 from local_settings import BOT_TOKEN
-from quotes import ALL_QUOTES
+from quotes import (
+    ALL_QUOTES,
+    HARRY_POTTER_QUOTES,
+    LORD_OF_THE_RINGS_QUOTES,
+    STAR_WARS_QUOTES,
+)
 
 
 def start(update, context):
     context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text="Hola! Soy un bot que dice frases bonitas"
+        text="Hola! Soy un bot que dice frases bonitas."
     )
 
 start_handler = CommandHandler('start', start)
@@ -34,6 +39,46 @@ def send_quotes(update, context):
 quotes_handler = MessageHandler(Filters.text & (~Filters.command), send_quotes)
 
 
+def harry_potter_quotes(update, context):
+    user_message = ' '.join(context.args)
+    matching_quotes = [
+        quote for quote in HARRY_POTTER_QUOTES if user_message in quote
+    ]
+    if not matching_quotes:
+        matching_quotes = HARRY_POTTER_QUOTES
+
+    selected_quote = random.choice(matching_quotes)
+
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text=selected_quote
+    )
+
+harry_potter_handler = CommandHandler('hp', harry_potter_quotes)
+
+
+def quotes_of(quotes_list):
+    def quotes_command(update, context):
+        user_message = ' '.join(context.args)
+        matching_quotes = [
+            quote for quote in quotes_list if user_message in quote
+        ]
+        if not matching_quotes:
+            matching_quotes = quotes_list
+
+        selected_quote = random.choice(matching_quotes)
+
+        context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=selected_quote
+        )
+
+    return quotes_command
+
+lord_of_the_rings_handler = CommandHandler('lotr', quotes_of(LORD_OF_THE_RINGS_QUOTES))
+star_wars_handler = CommandHandler('sw', quotes_of(STAR_WARS_QUOTES))
+
+
 def feedback(update, context):
     feedback_text = ' '.join(context.args)
 
@@ -53,6 +98,9 @@ if __name__ == "__main__":
 
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(quotes_handler)
+    dispatcher.add_handler(harry_potter_handler)
+    dispatcher.add_handler(lord_of_the_rings_handler)
+    dispatcher.add_handler(star_wars_handler)
     dispatcher.add_handler(feedback_handler)
 
     updater.start_polling()
