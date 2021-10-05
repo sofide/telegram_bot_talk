@@ -6,7 +6,7 @@ from local_settings import BOT_TOKEN
 def start(update, context):
     context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text="Hola! Soy un bot que repite cosas!"
+        text="Hola! Soy un bot!"
     )
 
 start_handler = CommandHandler('start', start)
