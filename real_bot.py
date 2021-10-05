@@ -103,7 +103,7 @@ def anonymous_feedback(update, context):
         text="Gracias por tu feedback anónimo!"
     )
 
-anonymous_feedback_handler = CommandHandler('a_feedback', anonymous_feedback)
+anonymous_feedback_handler = CommandHandler('feedack_anonimo', anonymous_feedback)
 
 if __name__ == "__main__":
     updater = Updater(token=BOT_TOKEN)
