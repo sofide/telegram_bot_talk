@@ -35,5 +35,5 @@ def bot_response():
 
 
 @app.route("/test")
-def index():
+def test():
     return "Hello Sofi!"
