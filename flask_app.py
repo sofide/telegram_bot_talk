@@ -19,11 +19,9 @@ def index():
 
 @app.route(f"/{BOT_TOKEN}", methods=["POST"])
 def bot_response():
-    print("im in bot response!!")
     update = request.get_json()
     dispatcher.process_update(Update.de_json(update, bot))
 
-    print("im in bot response!! - before return")
     return {"ok": True}
 
 
@@ -35,7 +33,5 @@ def test():
 @app.route("/webhook")
 def send_set_webhook():
     webhook_endpoint = f"{SITE_DOMAIN}/{BOT_TOKEN}"
-    print("about to sed webhook")
-    print("endpoint:", webhook_endpoint)
     bot.set_webhook(webhook_endpoint)
     return "webhook ready"
