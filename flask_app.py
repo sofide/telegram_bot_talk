@@ -26,3 +26,8 @@ def bot_response():
     dispatcher.process_update(Update.de_json(update, bot))
 
     return {"ok": True}
+
+
+@app.route("/test")
+def index():
+    return "Hello Sofi!"
