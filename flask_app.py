@@ -14,8 +14,12 @@ WEBHOOK_SETTED = False
 def set_webhook():
     global WEBHOOK_SETTED
     if not DEBUG and not WEBHOOK_SETTED:
-        bot.set_webhook(f"{SITE_DOMAIN}/{BOT_TOKEN}")
+        webhook_endpoint = f"{SITE_DOMAIN}/{BOT_TOKEN}"
+        print("about to sed webhook")
+        print("endpoint:", webhook_endpoint)
+        bot.set_webhook(webhook_endpoint)
         WEBHOOK_SETTED = True
+        print("webhook setted")
 
 dispatcher = Dispatcher(bot, None)
 add_all_handlers(dispatcher)
@@ -27,10 +31,12 @@ def index():
 
 @app.route(f"/{BOT_TOKEN}", methods=["POST"])
 def bot_response():
+    print("im in bot response!!")
     update = request.get_json()
     set_webhook()
     dispatcher.process_update(Update.de_json(update, bot))
 
+    print("im in bot response!! - before return")
     return {"ok": True}
 
 
