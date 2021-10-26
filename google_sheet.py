@@ -6,7 +6,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from settings import DRIVE_FILE_KEY
 
 
-#Authorize the API
+# Google API Credentials
 scope = [
     'https://www.googleapis.com/auth/drive',
     'https://www.googleapis.com/auth/drive.file'
