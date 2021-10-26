@@ -1,6 +1,6 @@
 import os
 
-SITE_DOMAIN = 'https://gastitis.herokuapp.com'
+SITE_DOMAIN = 'https://sofi-talk-bot.herokuapp.com'
 DEBUG = True
 
 # Heroku settings
