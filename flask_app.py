@@ -8,9 +8,14 @@ from settings import BOT_TOKEN, SITE_DOMAIN, DEBUG
 
 app = Flask(__name__)
 bot = Bot(BOT_TOKEN)
+WEBHOOK_SETTED = False
 
-if not DEBUG:
-    bot.set_webhook(f"{SITE_DOMAIN}/{BOT_TOKEN}")
+
+def set_webhook():
+    global WEBHOOK_SETTED
+    if not DEBUG and not WEBHOOK_SETTED:
+        bot.set_webhook(f"{SITE_DOMAIN}/{BOT_TOKEN}")
+        WEBHOOK_SETTED = True
 
 dispatcher = Dispatcher(bot, None)
 add_all_handlers(dispatcher)
@@ -23,6 +28,7 @@ def index():
 @app.route(f"/{BOT_TOKEN}", methods=["POST"])
 def bot_response():
     update = request.get_json()
+    set_webhook()
     dispatcher.process_update(Update.de_json(update, bot))
 
     return {"ok": True}
