@@ -21,6 +21,15 @@ def set_webhook():
         WEBHOOK_SETTED = True
         print("webhook setted")
 
+
+if not DEBUG:
+    print("not debug, setting webhook")
+    webhook_endpoint = f"{SITE_DOMAIN}/{BOT_TOKEN}"
+    print("webhook endpoint", webhook_endpoint)
+    bot.set_webhook(webhook_endpoint)
+    print("webhook ready")
+
+
 dispatcher = Dispatcher(bot, None)
 add_all_handlers(dispatcher)
 
@@ -33,7 +42,7 @@ def index():
 def bot_response():
     print("im in bot response!!")
     update = request.get_json()
-    set_webhook()
+    # set_webhook()
     dispatcher.process_update(Update.de_json(update, bot))
 
     print("im in bot response!! - before return")
