@@ -3,7 +3,7 @@ import random
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 from google_sheet import add_feedback
-from local_settings import BOT_TOKEN
+from settings import BOT_TOKEN
 from quotes import (
     ALL_QUOTES,
     HARRY_POTTER_QUOTES,

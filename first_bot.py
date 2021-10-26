@@ -1,6 +1,6 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-from local_settings import BOT_TOKEN
+from settings import BOT_TOKEN
 
 
 def start(update, context):
