@@ -25,11 +25,6 @@ def bot_response():
     return {"ok": True}
 
 
-@app.route("/test")
-def test():
-    return "Hello Sofi!"
-
-
 @app.route("/webhook")
 def send_set_webhook():
     webhook_endpoint = f"{SITE_DOMAIN}/{BOT_TOKEN}"
