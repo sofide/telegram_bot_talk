@@ -38,3 +38,4 @@ def send_set_webhook():
     print("about to sed webhook")
     print("endpoint:", webhook_endpoint)
     bot.set_webhook(webhook_endpoint)
+    return "webhook ready"
