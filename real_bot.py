@@ -105,11 +105,7 @@ def anonymous_feedback(update, context):
 
 anonymous_feedback_handler = CommandHandler('feedback_anonimo', anonymous_feedback)
 
-if __name__ == "__main__":
-    updater = Updater(token=BOT_TOKEN)
-
-    dispatcher = updater.dispatcher
-
+def add_all_handlers(dispatcher):
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(quotes_handler)
     dispatcher.add_handler(harry_potter_handler)
@@ -117,5 +113,13 @@ if __name__ == "__main__":
     dispatcher.add_handler(star_wars_handler)
     dispatcher.add_handler(feedback_handler)
     dispatcher.add_handler(anonymous_feedback_handler)
+
+
+if __name__ == "__main__":
+    updater = Updater(token=BOT_TOKEN)
+
+    dispatcher = updater.dispatcher
+
+    add_all_handlers(dispatcher)
 
     updater.start_polling()
