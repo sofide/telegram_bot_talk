@@ -20,7 +20,7 @@ def index():
     return "Hello World!"
 
 
-@app.route(f"/{BOT_TOKEN}")
+@app.route(f"/{BOT_TOKEN}", methods=["POST"])
 def bot_response():
     update = request.get_json()
     dispatcher.process_update(Update.de_json(update, bot))
