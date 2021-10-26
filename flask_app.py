@@ -52,3 +52,11 @@ def bot_response():
 @app.route("/test")
 def test():
     return "Hello Sofi!"
+
+
+@app.route("/webhook")
+def send_set_webhook():
+    webhook_endpoint = f"{SITE_DOMAIN}/{BOT_TOKEN}"
+    print("about to sed webhook")
+    print("endpoint:", webhook_endpoint)
+    bot.set_webhook(webhook_endpoint)
