@@ -10,7 +10,7 @@ from settings import DRIVE_FILE_KEY, FEEDBACK_SPREADSHEET_NAME, FEEDBACK_WORKSHE
 scope = [
     'https://www.googleapis.com/auth/drive',
     'https://www.googleapis.com/auth/drive.file'
-    ]
+]
 creds = ServiceAccountCredentials.from_json_keyfile_name(DRIVE_FILE_KEY, scope)
 client = gspread.authorize(creds)
 
