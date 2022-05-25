@@ -54,3 +54,24 @@ or:
 ```bash
 python real_bot.py
 ```
+
+## Deploy the bot in HEROKU
+
+- Create account in [Heroku](https://signup.heroku.com/)
+- Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+- [Create an app](https://devcenter.heroku.com/articles/creating-apps) on Heroku.
+- Add a remote to your local repository
+```bash
+>> heroku git:remote -a example-app
+set git remote heroku to https://git.heroku.com/example-app.git
+```
+Replace `example-app` for your Heroku app name.
+
+- Deploy by simply pushing your changes
+```bash
+>> git push heroku master
+```
+
+
+Note: you need to have a `Procfile` file pointing to a web app, like the one you can
+find in the root of this repo.
