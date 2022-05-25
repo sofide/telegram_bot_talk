@@ -36,9 +36,9 @@ Before running the bot, you need to install some dependencies. I recommend to cr
 inside a virtualenv:
 
 ```bash
->> python3 -m venv myvenv
->> . myvenv/bin/activate
->> pip install -r requirements.txt
+$ python3 -m venv myvenv
+$ . myvenv/bin/activate
+$ pip install -r requirements.txt
 ```
 
 ## Run the bots
@@ -62,14 +62,14 @@ python real_bot.py
 - [Create an app](https://devcenter.heroku.com/articles/creating-apps) on Heroku.
 - Add a remote to your local repository
 ```bash
->> heroku git:remote -a example-app
+$ heroku git:remote -a example-app
 set git remote heroku to https://git.heroku.com/example-app.git
 ```
 Replace `example-app` for your Heroku app name.
 
 - Deploy by simply pushing your changes
 ```bash
->> git push heroku master
+$ git push heroku master
 ```
 
 
