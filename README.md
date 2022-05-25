@@ -46,13 +46,13 @@ $ pip install -r requirements.txt
 Now you can run any of the bots! (remember to run these commands inside your virtualenv)
 
 ```bash
-python first_bot.py
+$ python first_bot.py
 ```
 
 or:
 
 ```bash
-python real_bot.py
+$ python real_bot.py
 ```
 
 ## Deploy the bot in HEROKU
@@ -63,7 +63,6 @@ python real_bot.py
 - Add a remote to your local repository
 ```bash
 $ heroku git:remote -a example-app
-set git remote heroku to https://git.heroku.com/example-app.git
 ```
 Replace `example-app` for your Heroku app name.
 
