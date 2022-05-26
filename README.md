@@ -70,6 +70,8 @@ Replace `example-app` for your Heroku app name.
 ```bash
 $ git push heroku master
 ```
+- from a browser (or from a terminal with curl or httpie, etc) make a request to
+`<your_heroku_app_domain>/webhook` to initialize the webhook for your bot.
 
 
 Note: you need to have a `Procfile` file pointing to a web app, like the one you can
