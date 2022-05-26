@@ -25,9 +25,7 @@ echo_handler = MessageHandler(Filters.text & (~Filters.command), echo)
 if __name__ == "__main__":
     updater = Updater(token=BOT_TOKEN)
 
-    dispatcher = updater.dispatcher
-
-    dispatcher.add_handler(start_handler)
-    dispatcher.add_handler(echo_handler)
+    updater.dispatcher.add_handler(start_handler)
+    updater.dispatcher.add_handler(echo_handler)
 
     updater.start_polling()
